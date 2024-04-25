@@ -2,8 +2,10 @@ const express = require("express");
 const fs = require("fs");
 const app = express();
 const port = 3000;
+const cors = require("cors");
 
 app.use(express.json());
+app.use(cors()); //Allows Cross Origin Requests, connecting frontend and backend
 
 app.post("/addData", (req, res) => {
   const { name, money } = req.body;

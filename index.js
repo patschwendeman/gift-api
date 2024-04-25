@@ -45,6 +45,21 @@ app.get("/getData", (req, res) => {
   res.json(data);
 });
 
+app.delete("/deleteData", (req, res) => {
+  // Pfad zur JSON-Datei
+  const filePath = "data.json";
+
+  // Überprüfen, ob die Datei existiert
+  if (!fs.existsSync(filePath)) {
+    return res.status(404).json({ error: "No data found" });
+  }
+
+  // Daten aus der JSON-Datei löschen
+  fs.unlinkSync(filePath);
+
+  res.json({ message: "Data deleted successfully" });
+});
+
 app.listen(port, () => {
   console.log(`Server is running on http://localhost:${port}`);
 });
